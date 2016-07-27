@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask React</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/materialize.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav class="light-blue lighten-1" role="navigation">
+            <div id="navbar" class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="side-nav fixed">
+                    <li><a href="/page1" class="waves-effect waves-teal">page1</a></li>
+                    <li><a href="/page2" class="waves-effect waves-teal">page2</a></li>
+                </ul>
+                <a href="/" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <div class="container" id="todo-container">
+
+        </div>
+    </main>
+
+
+    <script src="../static/js/build/bundle.js"></script>
+    <script src="../static/js/lib/jquery-2.1.1.min.js"></script>
+    <script src="../static/js/lib/materialize.min.js"></script>
+    <script src="../static/js/user/init.js"></script>
+</body>
+</html>
