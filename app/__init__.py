@@ -29,7 +29,10 @@ db.create_all()
 clientname = '吉姆'
 client = clientname.decode('utf-8')
 filename = '公交出行路线图'.decode('utf-8')
-o = Order(clientname=client, filename=filename,date=datetime.now(),status=False)
+
+now = datetime.now()
+sn = datetime.strftime(now,'%Y%m%d%H%M%S')
+o = Order(clientname=client, filename=filename,SN=sn,date=now,status=False)
 print o.to_json()
 try:
     db.session.add(o)

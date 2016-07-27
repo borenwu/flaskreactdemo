@@ -7,6 +7,7 @@ class Order(db.Model):
     __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
     clientname = db.Column(db.String(320), unique=True)
+    SN = db.Column(db.String(320), unique=True)
     filename = db.Column(db.String(320), unique=True)
     date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
@@ -18,6 +19,7 @@ class Order(db.Model):
         return {
             'id': str(self.id),
             'clientname': self.clientname,
+            'sn':self.SN,
             'filename':self.filename,
             'date': self.date.__str__(),
             'status': self.status
