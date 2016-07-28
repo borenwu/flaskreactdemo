@@ -26,21 +26,22 @@ from models.OrderModel import Order
 db.create_all()
 
 
-clientname = '吉姆'
-client = clientname.decode('utf-8')
-filename = '公交出行路线图'.decode('utf-8')
-
-now = datetime.now()
-sn = datetime.strftime(now,'%Y%m%d%H%M%S')
-o = Order(clientname=client, filename=filename,SN=sn,date=now,status=False)
-print o.to_json()
-try:
-    db.session.add(o)
-    db.session.commit()
-except Exception:
-    print 'user is already in'
-    db.session.close()
-    pass
+# clientname = '吉姆'
+# client = clientname.decode('utf-8')
+# filename = '公交出行路线图'.decode('utf-8')
+#
+# now = datetime.now()
+# sn = datetime.strftime(now,'%Y%m%d%H%M%S')
+# o = Order(clientname=client, filename=filename,SN=sn,date=now,status=False)
+# print o.to_json()
+# try:
+#     db.session.add(o)
+#     db.session.commit()
+# except Exception:
+#     print 'user is already in'
+#     db.session.close()
+#     pass
 
 
 from app import views
+from app.api import *
