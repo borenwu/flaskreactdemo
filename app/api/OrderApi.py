@@ -17,17 +17,27 @@ def add():
     order.save()
     return jsonify(status="success")
 
-@app.route('/orders/list',methods=['POST',])
+@app.route('/orders/list',methods=['POST','GET'])
 def list():
-    form = request.form
-    # print args.isempty()
-    try:
-        start = form['start']
-        end = form['end']
-        orders = Order.query.filter((Order.date > start) & (Order.date < end))
-    except:
-        orders = Order.query.all()
-    return jsonify(status="success", orders=[order.to_json() for order in orders])
+    if request.method == 'POST':
+        form = request.form
+        # print args.isempty()
+        try:
+            start = form['start']
+            end = form['end']
+            orders = Order.query.filter((Order.date > start) & (Order.date < end))
+            return jsonify(status="success", orders=[order.to_json() for order in orders])
+        except:
+            return jsonify(status="fail")
+
+    else:
+        now = datetime.now()
+        oneday=timedelta(days=1)
+        tomorrow = (now + oneday).strftime('%Y-%m-%d')
+        today = now.strftime('%Y-%m-%d')
+        orders = Order.query.filter((Order.date > today) & (Order.date < tomorrow))
+        return jsonify(status="success", orders=[order.to_json() for order in orders])
+
 
 @app.route('/orders/delete/<string:sn>')
 def delete(sn):
@@ -46,11 +56,7 @@ def update():
 
     try:
         order = Order.query.filter_by(SN=sn).first_or_404()
-        new_clientname = form.get('clientname')
-        new_filename = form.get('filename')
         new_status = form.get('status')
-        order.clientname = new_clientname
-        order.filename = new_filename
         order.status = new_status
         order.update()
         return jsonify(status="success")

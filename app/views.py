@@ -5,7 +5,7 @@ from flask import render_template,request,redirect,url_for
 def index():
     return render_template('index.html')
 
-@app.route('/page1')
+@app.route('/orders')
 def page1():
     return render_template('index.html')
 

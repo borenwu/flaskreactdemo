@@ -3,7 +3,7 @@ var React = require('react')
 var Todo = React.createClass({
     render: function(){
         return(
-            <div class="container">
+            <div className="container">
                 <h1>Hello World</h1>
             </div>
         )
