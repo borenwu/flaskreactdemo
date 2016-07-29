@@ -27,18 +27,18 @@ var OrderTable = React.createClass({
         }.bind(this));
         return (
            <div>
-               <div className="row">
-                   <h2 className="col s6">订单列表</h2>
-                   <div className="col s6">
-                       <div className="col s5">
+               <div className="section row">
+                   <h2 >订单列表</h2>
+                   <div >
+                       <div >
                            起始日期:
                            <input ref="startDate" name="startDate"  type="date" className="validate"/>
                        </div>
-                        <div className="col s5">
+                        <div >
                            终止日期:
                            <input ref="endDate" name="endDate" type="date" className="validate"/>
                        </div>
-                       <div className="col s2">
+                       <div>
                            <button onClick={this.handleSearch} className="btn-floating btn-large waves-effect waves-light blue lighten-1">
                                <i className="material-icons">search</i>
                            </button>

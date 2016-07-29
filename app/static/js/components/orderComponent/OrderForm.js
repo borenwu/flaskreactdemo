@@ -18,15 +18,15 @@ var OrderForm =React.createClass({
 
     render : function(){
         return (
-            <div className="row">
-                <form className="col s12" method="post" onSubmit={this.handleSubmit}>
-                    <div className="row">
-                        <div className="input-field col s12">
+            <div>
+                <form method="post" onSubmit={this.handleSubmit}>
+                    <div>
+                        <div className="input-field">
                             <input id="client" type="text" ref="client" name="client" className="validate"/>
                             <label htmlFor="client">客户</label>
                         </div>
 
-                        <div className="input-field col s12">
+                        <div className="input-field">
                             <input id="filename" type="text" ref="filename" name="filename" className="validate"/>
                             <label htmlFor="filename">文件名</label>
                         </div>

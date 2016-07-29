@@ -79,10 +79,10 @@ var Order = React.createClass({
     render : function(){
         return(
             <div>
-                <div>
+                <div id="orderForm">
                     <OrderForm addOrder = {this.addOrder} />
                 </div>
-                <div>
+                <div id="orderTable">
                     <OrderTable orders = {this.state.orders}
                                 searchOrder = {this.searchOrder}
                                 updateOrder={this.updateOrder}

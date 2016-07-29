@@ -21237,10 +21237,10 @@
 	    render : function(){
 	        return(
 	            React.createElement("div", null, 
-	                React.createElement("div", null, 
+	                React.createElement("div", {id: "orderForm"}, 
 	                    React.createElement(OrderForm, {addOrder: this.addOrder})
 	                ), 
-	                React.createElement("div", null, 
+	                React.createElement("div", {id: "orderTable"}, 
 	                    React.createElement(OrderTable, {orders: this.state.orders, 
 	                                searchOrder: this.searchOrder, 
 	                                updateOrder: this.updateOrder, 
@@ -21280,15 +21280,15 @@
 
 	    render : function(){
 	        return (
-	            React.createElement("div", {className: "row"}, 
-	                React.createElement("form", {className: "col s12", method: "post", onSubmit: this.handleSubmit}, 
-	                    React.createElement("div", {className: "row"}, 
-	                        React.createElement("div", {className: "input-field col s12"}, 
+	            React.createElement("div", null, 
+	                React.createElement("form", {method: "post", onSubmit: this.handleSubmit}, 
+	                    React.createElement("div", null, 
+	                        React.createElement("div", {className: "input-field"}, 
 	                            React.createElement("input", {id: "client", type: "text", ref: "client", name: "client", className: "validate"}), 
 	                            React.createElement("label", {htmlFor: "client"}, "客户")
 	                        ), 
 
-	                        React.createElement("div", {className: "input-field col s12"}, 
+	                        React.createElement("div", {className: "input-field"}, 
 	                            React.createElement("input", {id: "filename", type: "text", ref: "filename", name: "filename", className: "validate"}), 
 	                            React.createElement("label", {htmlFor: "filename"}, "文件名")
 	                        ), 
@@ -21338,18 +21338,18 @@
 	        }.bind(this));
 	        return (
 	           React.createElement("div", null, 
-	               React.createElement("div", {className: "row"}, 
-	                   React.createElement("h2", {className: "col s6"}, "订单列表"), 
-	                   React.createElement("div", {className: "col s6"}, 
-	                       React.createElement("div", {className: "col s5"}, 
+	               React.createElement("div", {className: "section row"}, 
+	                   React.createElement("h2", null, "订单列表"), 
+	                   React.createElement("div", null, 
+	                       React.createElement("div", null, 
 	                           "起始日期:", 
 	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date", className: "validate"})
 	                       ), 
-	                        React.createElement("div", {className: "col s5"}, 
+	                        React.createElement("div", null, 
 	                           "终止日期:", 
 	                           React.createElement("input", {ref: "endDate", name: "endDate", type: "date", className: "validate"})
 	                       ), 
-	                       React.createElement("div", {className: "col s2"}, 
+	                       React.createElement("div", null, 
 	                           React.createElement("button", {onClick: this.handleSearch, className: "btn-floating btn-large waves-effect waves-light blue lighten-1"}, 
 	                               React.createElement("i", {className: "material-icons"}, "search")
 	                           )
