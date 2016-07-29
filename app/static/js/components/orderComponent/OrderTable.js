@@ -1,27 +1,66 @@
 var React = require('react');
-var TodoItem = require('./TodoItem');
+var ReactDOM = require('react-dom');
+var OrderItem = require('./OrderItem');
 
 var OrderTable = React.createClass({
+
+    handleSearch : function(e){
+        console.log('search start!')
+        e.preventDefault();
+        var startDate = ReactDOM.findDOMNode(this.refs.startDate).value.trim();
+        var endDate = ReactDOM.findDOMNode(this.refs.endDate).value.trim();
+        console.log(startDate)
+        console.log(endDate)
+        if(!startDate || !endDate){
+            return;
+        }
+        this.props.searchOrder(startDate,endDate);
+
+        //ReactDOM.findDOMNode(this.refs.startDate).value = "";
+        //ReactDOM.findDOMNode(this.refs.endDate).value = "";
+    },
+
+
     render : function(){
-        var todos = this.props.todos.map(function(item){
-            return <TodoItem key={item.id} todo={item} updateTodo={this.props.updateTodo} deleteTodo={this.props.deleteTodo}/>
+        var orders = this.props.orders.map(function(item){
+            return <OrderItem key={item.SN} order={item} updateOrder={this.props.updateOrder} deleteOrder={this.props.deleteOrder}/>
         }.bind(this));
         return (
            <div>
-               <h2>Todo List</h2>
-               <table className="table">
+               <div className="row">
+                   <h2 className="col s6">订单列表</h2>
+                   <div className="col s6">
+                       <div className="col s5">
+                           起始日期:
+                           <input ref="startDate" name="startDate"  type="date" className="validate"/>
+                       </div>
+                        <div className="col s5">
+                           终止日期:
+                           <input ref="endDate" name="endDate" type="date" className="validate"/>
+                       </div>
+                       <div className="col s2">
+                           <button onClick={this.handleSearch} className="btn-floating btn-large waves-effect waves-light blue lighten-1">
+                               <i className="material-icons">search</i>
+                           </button>
+                       </div>
+                   </div>
+               </div>
+               <div>
+                   <table className="highlight responsive-table">
                    <thead>
                        <tr>
-                           <th>content</th>
-                           <th>status</th>
-                           <th>time</th>
-                           <th>operation</th>
+                           <th>客户</th>
+                           <th>流水号</th>
+                           <th>文件名</th>
+                           <th>状态</th>
+                           <th>操作</th>
                        </tr>
                     </thead>
                     <tbody>
-                    {todos}
+                    {orders}
                     </tbody>
                 </table>
+               </div>
            </div>
         )
     }

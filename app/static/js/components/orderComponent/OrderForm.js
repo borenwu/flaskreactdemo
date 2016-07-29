@@ -32,7 +32,7 @@ var OrderForm =React.createClass({
                         </div>
 
                         <button className="btn waves-effect waves-light" type="submit">Submit
-                            <i className="mdi-content-send right"></i>
+                            <i className="material-icons right">send</i>
                         </button>
                     </div>
                 </form>

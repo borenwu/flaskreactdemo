@@ -19,15 +19,22 @@ def add():
 
 @app.route('/orders/list',methods=['POST','GET'])
 def list():
+
     if request.method == 'POST':
+        print "post"
         form = request.form
         # print args.isempty()
         try:
             start = form['start']
             end = form['end']
-            orders = Order.query.filter((Order.date > start) & (Order.date < end))
+            oneday=timedelta(days=1)
+            endDate = datetime.strptime(end,"%Y-%m-%d")
+            newEnd = (endDate + oneday).strftime("%Y-%m-%d")
+
+            orders = Order.query.filter((Order.date >= start) & (Order.date < newEnd))
             return jsonify(status="success", orders=[order.to_json() for order in orders])
-        except:
+        except Exception,e:
+            print e
             return jsonify(status="fail")
 
     else:

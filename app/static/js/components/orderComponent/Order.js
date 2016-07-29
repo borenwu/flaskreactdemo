@@ -1,5 +1,6 @@
 var React = require("react");
 var OrderForm = require('./OrderForm');
+var OrderTable = require('./OrderTable');
 
 
 var Order = React.createClass({
@@ -15,7 +16,19 @@ var Order = React.createClass({
             url : '/orders/list'
         }).done(function(resp){
             if(resp.status == "success"){
-                this.setState({orders:resp.todos});
+                this.setState({orders:resp.orders});
+            }
+        }.bind(this))
+    },
+
+    searchOrder : function (startDate,endDate) {
+        $.ajax({
+            type : 'post',
+            url : '/orders/list',
+            data: {start:startDate,end:endDate}
+        }).done(function(resp){
+            if(resp.status == "success"){
+                this.setState({orders:resp.orders});
             }
         }.bind(this))
     },
@@ -51,7 +64,7 @@ var Order = React.createClass({
         $.ajax({
             type : 'post',
             url : '/orders/update',
-            data : {sn:id,status:status}
+            data : {sn:sn,status:status}
         }).done(function (resp) {
             if(resp.status == "success"){
                 this.todayOrders();
@@ -66,7 +79,16 @@ var Order = React.createClass({
     render : function(){
         return(
             <div>
-                <OrderForm addOrder = {this.addOrder} />
+                <div>
+                    <OrderForm addOrder = {this.addOrder} />
+                </div>
+                <div>
+                    <OrderTable orders = {this.state.orders}
+                                searchOrder = {this.searchOrder}
+                                updateOrder={this.updateOrder}
+                                deleteOrder = {this.deleteOrder}/>
+                </div>
+
             </div>
         )
     }
