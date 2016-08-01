@@ -24,15 +24,14 @@ var OrderTable = React.createClass({
         console.log('output start!')
         e.preventDefault();
 
-        //getting data from our table
-        var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
-        var table_div = document.getElementById('table_wrapper');
-        var table_html = table_div.outerHTML.replace(/ /g, '%20');
-
-        var a = document.createElement('a');
-        a.href = data_type  + ', ' + table_html;
-        a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
-        a.click();
+        $("#table_wrapper").table2excel({
+            name: "Excel Document Name",
+            filename: "myFileName",
+            fileext: ".xls",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+        });
     },
 
 
@@ -64,8 +63,8 @@ var OrderTable = React.createClass({
                        </div>
                    </div>
                </div>
-               <div id="table_wrapper">
-                   <table className="bordered highlight responsive-table">
+               <div>
+                   <table id="table_wrapper" className="bordered highlight responsive-table">
                    <thead>
                        <tr>
                            <th className="blue-grey-text text-darken-1">客户</th>
