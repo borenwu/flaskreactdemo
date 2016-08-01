@@ -21280,20 +21280,23 @@
 
 	    render : function(){
 	        return (
-	            React.createElement("div", null, 
-	                React.createElement("form", {method: "post", onSubmit: this.handleSubmit}, 
-	                    React.createElement("div", null, 
-	                        React.createElement("div", {className: "input-field"}, 
+	            React.createElement("div", {className: "row"}, 
+	                React.createElement("form", {className: "col s12", method: "post", onSubmit: this.handleSubmit}, 
+	                    React.createElement("div", {className: "row"}, 
+	                        React.createElement("div", {className: "input-field col s5"}, 
+	                            React.createElement("i", {className: "material-icons prefix"}, "account_circle"), 
 	                            React.createElement("input", {id: "client", type: "text", ref: "client", name: "client", className: "validate"}), 
 	                            React.createElement("label", {htmlFor: "client"}, "客户")
 	                        ), 
 
-	                        React.createElement("div", {className: "input-field"}, 
+	                        React.createElement("div", {className: "input-field col s5"}, 
+	                            React.createElement("i", {className: "material-icons prefix"}, "receipt"), 
 	                            React.createElement("input", {id: "filename", type: "text", ref: "filename", name: "filename", className: "validate"}), 
 	                            React.createElement("label", {htmlFor: "filename"}, "文件名")
 	                        ), 
 
-	                        React.createElement("button", {className: "btn waves-effect waves-light", type: "submit"}, "Submit", 
+	                        React.createElement("button", {id: "btnOrderSubmit", className: "btn waves-effect waves-light col s2", type: "submit"}, 
+	                            "提交", 
 	                            React.createElement("i", {className: "material-icons right"}, "send")
 	                        )
 	                    )
@@ -21331,6 +21334,21 @@
 	        //ReactDOM.findDOMNode(this.refs.endDate).value = "";
 	    },
 
+	    handleOutput : function(e){
+	        console.log('output start!')
+	        e.preventDefault();
+
+	        //getting data from our table
+	        var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
+	        var table_div = document.getElementById('table_wrapper');
+	        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+	        var a = document.createElement('a');
+	        a.href = data_type  + ', ' + table_html;
+	        a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+	        a.click();
+	    },
+
 
 	    render : function(){
 	        var orders = this.props.orders.map(function(item){
@@ -21338,33 +21356,37 @@
 	        }.bind(this));
 	        return (
 	           React.createElement("div", null, 
-	               React.createElement("div", {className: "section row"}, 
-	                   React.createElement("h2", null, "订单列表"), 
+	               React.createElement("div", {className: "row"}, 
+	                   React.createElement("h2", {className: "center-align"}, "订单列表"), 
 	                   React.createElement("div", null, 
-	                       React.createElement("div", null, 
+	                       React.createElement("div", {className: "col s4"}, 
 	                           "起始日期:", 
-	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date", className: "validate"})
-	                       ), 
-	                        React.createElement("div", null, 
-	                           "终止日期:", 
+	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date", className: "validate"}), 
+	                            "终止日期:", 
 	                           React.createElement("input", {ref: "endDate", name: "endDate", type: "date", className: "validate"})
 	                       ), 
-	                       React.createElement("div", null, 
-	                           React.createElement("button", {onClick: this.handleSearch, className: "btn-floating btn-large waves-effect waves-light blue lighten-1"}, 
-	                               React.createElement("i", {className: "material-icons"}, "search")
+
+	                       React.createElement("div", {className: "col s8 orderTableOps"}, 
+	                           React.createElement("button", {id: "btnSearch", className: "btn waves-effect waves-light blue accent-2", onClick: this.handleSearch}, 
+	                               React.createElement("i", {className: "material-icons left"}, "search"), 
+	                               "搜索"
+	                           ), 
+	                           React.createElement("button", {id: "btnOutput", className: "btn waves-effect waves-light deep-purple lighten-2", onClick: this.handleOutput}, 
+	                               React.createElement("i", {className: "material-icons left"}, "description"), 
+	                               "导出"
 	                           )
 	                       )
 	                   )
 	               ), 
-	               React.createElement("div", null, 
-	                   React.createElement("table", {className: "highlight responsive-table"}, 
+	               React.createElement("div", {id: "table_wrapper"}, 
+	                   React.createElement("table", {className: "bordered highlight responsive-table"}, 
 	                   React.createElement("thead", null, 
 	                       React.createElement("tr", null, 
-	                           React.createElement("th", null, "客户"), 
-	                           React.createElement("th", null, "流水号"), 
-	                           React.createElement("th", null, "文件名"), 
-	                           React.createElement("th", null, "状态"), 
-	                           React.createElement("th", null, "操作")
+	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "客户"), 
+	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "流水号"), 
+	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "文件名"), 
+	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "状态"), 
+	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "操作")
 	                       )
 	                    ), 
 	                    React.createElement("tbody", null, 
@@ -21398,7 +21420,7 @@
 	        var updateBtn;
 
 	        if(o.status == 0){
-	            updateBtn =  React.createElement("button", {onClick: this.handleUpdate.bind(this,o.sn,1), className: "btn waves-effect waves-light"}, "完成")
+	            updateBtn =  React.createElement("button", {onClick: this.handleUpdate.bind(this,o.sn,1), className: "btn waves-effect waves-light deep-purple lighten-2"}, "完成")
 	        }else{
 	            updateBtn = React.createElement("button", {className: "btn disabled"}, "完成")
 	        }
@@ -21411,7 +21433,7 @@
 	               React.createElement("td", null,  o.status == 0 ? '未完成':'已完成'), 
 	               React.createElement("td", null, 
 	                   updateBtn, 
-	                   React.createElement("button", {onClick: this.handleDelete.bind(this,o.sn), className: "btn waves-effect waves-light"}, "Delete")
+	                   React.createElement("button", {onClick: this.handleDelete.bind(this,o.sn), className: "btn waves-effect waves-light red darken-3"}, "删除")
 	               )
 	           )
 	        )

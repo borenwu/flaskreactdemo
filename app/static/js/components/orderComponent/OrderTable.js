@@ -20,6 +20,21 @@ var OrderTable = React.createClass({
         //ReactDOM.findDOMNode(this.refs.endDate).value = "";
     },
 
+    handleOutput : function(e){
+        console.log('output start!')
+        e.preventDefault();
+
+        //getting data from our table
+        var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
+        var table_div = document.getElementById('table_wrapper');
+        var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+        var a = document.createElement('a');
+        a.href = data_type  + ', ' + table_html;
+        a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+        a.click();
+    },
+
 
     render : function(){
         var orders = this.props.orders.map(function(item){
@@ -27,33 +42,37 @@ var OrderTable = React.createClass({
         }.bind(this));
         return (
            <div>
-               <div className="section row">
-                   <h2 >订单列表</h2>
+               <div className="row">
+                   <h2 className="center-align">订单列表</h2>
                    <div >
-                       <div >
+                       <div className="col s4">
                            起始日期:
                            <input ref="startDate" name="startDate"  type="date" className="validate"/>
-                       </div>
-                        <div >
-                           终止日期:
+                            终止日期:
                            <input ref="endDate" name="endDate" type="date" className="validate"/>
                        </div>
-                       <div>
-                           <button onClick={this.handleSearch} className="btn-floating btn-large waves-effect waves-light blue lighten-1">
-                               <i className="material-icons">search</i>
+
+                       <div className="col s8 orderTableOps">
+                           <button id="btnSearch" className="btn waves-effect waves-light blue accent-2" onClick={this.handleSearch}>
+                               <i className="material-icons left">search</i>
+                               搜索
+                           </button>
+                           <button id="btnOutput" className="btn waves-effect waves-light deep-purple lighten-2" onClick={this.handleOutput}>
+                               <i className="material-icons left">description</i>
+                               导出
                            </button>
                        </div>
                    </div>
                </div>
-               <div>
-                   <table className="highlight responsive-table">
+               <div id="table_wrapper">
+                   <table className="bordered highlight responsive-table">
                    <thead>
                        <tr>
-                           <th>客户</th>
-                           <th>流水号</th>
-                           <th>文件名</th>
-                           <th>状态</th>
-                           <th>操作</th>
+                           <th className="blue-grey-text text-darken-1">客户</th>
+                           <th className="blue-grey-text text-darken-1">流水号</th>
+                           <th className="blue-grey-text text-darken-1">文件名</th>
+                           <th className="blue-grey-text text-darken-1">状态</th>
+                           <th className="blue-grey-text text-darken-1">操作</th>
                        </tr>
                     </thead>
                     <tbody>

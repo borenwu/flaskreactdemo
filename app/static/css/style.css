@@ -6,31 +6,56 @@
  * Made By MaterializeCSS.com
  */
 
+/*over all*/
+html {
+    font-family: 'Microsoft YaHei','Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+}
+
 #nav-mobile{
 	margin-top: 65px;
 }
 
+#todo-container{
+    margin-top: 30px;
+}
+
+/*order form section*/
 #orderForm{
 
 }
 
+#btnOrderSubmit{
+    margin-top: 25px;
+}
+
+/*order table section*/
 #orderTable{
 
 }
 
-.icon-block {
-  padding: 0 15px;
+thead tr th{
+    font-size: large;
 }
+
+.orderTableOps{
+    margin-top: 120px;
+}
+
+/*other*/
+.icon-block {
+    padding: 0 15px;
+}
+
 .icon-block .material-icons {
 	font-size: inherit;
 }
 
 main{
     padding-left: 240px;
-  }
+}
 
-  @media only screen and (max-width : 992px) {
+@media only screen and (max-width : 992px) {
     main{
       padding-left: 0;
     }
-  }
+}

@@ -18,20 +18,23 @@ var OrderForm =React.createClass({
 
     render : function(){
         return (
-            <div>
-                <form method="post" onSubmit={this.handleSubmit}>
-                    <div>
-                        <div className="input-field">
+            <div className="row">
+                <form className="col s12" method="post" onSubmit={this.handleSubmit}>
+                    <div className="row">
+                        <div className="input-field col s5">
+                            <i className="material-icons prefix">account_circle</i>
                             <input id="client" type="text" ref="client" name="client" className="validate"/>
                             <label htmlFor="client">客户</label>
                         </div>
 
-                        <div className="input-field">
+                        <div className="input-field col s5">
+                            <i className="material-icons prefix">receipt</i>
                             <input id="filename" type="text" ref="filename" name="filename" className="validate"/>
                             <label htmlFor="filename">文件名</label>
                         </div>
 
-                        <button className="btn waves-effect waves-light" type="submit">Submit
+                        <button id="btnOrderSubmit" className="btn waves-effect waves-light col s2" type="submit">
+                            提交
                             <i className="material-icons right">send</i>
                         </button>
                     </div>
