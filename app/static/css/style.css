@@ -7,6 +7,12 @@
  */
 
 /*over all*/
+@media only screen and (max-width : 992px) {
+    main{
+      padding-left: 0;
+    }
+}
+
 html {
     font-family: 'Microsoft YaHei','Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
 }
@@ -54,8 +60,3 @@ main{
     padding-left: 240px;
 }
 
-@media only screen and (max-width : 992px) {
-    main{
-      padding-left: 0;
-    }
-}
