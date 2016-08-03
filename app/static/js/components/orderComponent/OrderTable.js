@@ -41,22 +41,22 @@ var OrderTable = React.createClass({
         }.bind(this));
         return (
            <div>
-               <div className="row">
-                   <h2 className="center-align">订单列表</h2>
+               <div>
+                   <h2>订单列表</h2>
                    <div >
-                       <div className="col s4">
+                       <div>
                            起始日期:
-                           <input ref="startDate" name="startDate"  type="date" className="validate"/>
+                           <input ref="startDate" name="startDate"  type="date"/>
                             终止日期:
-                           <input ref="endDate" name="endDate" type="date" className="validate"/>
+                           <input ref="endDate" name="endDate" type="date"/>
                        </div>
 
-                       <div className="col s8 orderTableOps">
-                           <button id="btnSearch" className="btn waves-effect waves-light blue accent-2" onClick={this.handleSearch}>
+                       <div>
+                           <button id="btnSearch" className="btn" onClick={this.handleSearch}>
                                <i className="material-icons left">search</i>
                                搜索
                            </button>
-                           <button id="btnOutput" className="btn waves-effect waves-light deep-purple lighten-2" onClick={this.handleOutput}>
+                           <button id="btnOutput" className="btn" onClick={this.handleOutput}>
                                <i className="material-icons left">description</i>
                                导出
                            </button>
@@ -64,7 +64,7 @@ var OrderTable = React.createClass({
                    </div>
                </div>
                <div>
-                   <table id="table_wrapper" className="bordered highlight responsive-table">
+                   <table id="table_wrapper">
                    <thead>
                        <tr>
                            <th className="blue-grey-text text-darken-1">客户</th>

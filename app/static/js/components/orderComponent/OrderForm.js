@@ -1,43 +1,33 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var OrderForm =React.createClass({
+var OrderForm = React.createClass({
 
-    handleSubmit : function(e){
+    handleSubmit: function (e) {
         e.preventDefault();
         var client = ReactDOM.findDOMNode(this.refs.client).value.trim();
         var filename = ReactDOM.findDOMNode(this.refs.filename).value.trim();
-        if(!client){
+        if (!client) {
             return;
         }
-        this.props.addOrder(client,filename);
+        this.props.addOrder(client, filename);
 
         ReactDOM.findDOMNode(this.refs.client).value = "";
         ReactDOM.findDOMNode(this.refs.filename).value = "";
     },
 
-    render : function(){
+    render: function () {
         return (
-            <div className="row">
-                <form className="col s12" method="post" onSubmit={this.handleSubmit}>
-                    <div className="row">
-                        <div className="input-field col s5">
-                            <i className="material-icons prefix">account_circle</i>
-                            <input id="client" type="text" ref="client" name="client" className="validate"/>
-                            <label htmlFor="client">客户</label>
-                        </div>
+            <div className="container">
+                <form className="form-order" method="post" onSubmit={this.handleSubmit}>
+                    <h2 className="form-order-heading">提交订单</h2>
+                    <label htmlFor="client" className="sr-only">Email address</label>
+                    <input type="text" id="client" className="form-control" placeholder="客户" ref="client"/>
 
-                        <div className="input-field col s5">
-                            <i className="material-icons prefix">receipt</i>
-                            <input id="filename" type="text" ref="filename" name="filename" className="validate"/>
-                            <label htmlFor="filename">文件名</label>
-                        </div>
+                    <label htmlFor="filename" className="sr-only">Password</label>
+                    <input type="text" id="filename" className="form-control" placeholder="文件名" ref="filename"/>
 
-                        <button id="btnOrderSubmit" className="btn waves-effect waves-light col s2" type="submit">
-                            提交
-                            <i className="material-icons right">send</i>
-                        </button>
-                    </div>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">提交</button>
                 </form>
             </div>
         )

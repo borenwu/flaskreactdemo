@@ -21263,44 +21263,36 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(33);
 
-	var OrderForm =React.createClass({displayName: "OrderForm",
+	var OrderForm = React.createClass({displayName: "OrderForm",
 
-	    handleSubmit : function(e){
+	    handleSubmit: function (e) {
 	        e.preventDefault();
 	        var client = ReactDOM.findDOMNode(this.refs.client).value.trim();
 	        var filename = ReactDOM.findDOMNode(this.refs.filename).value.trim();
-	        if(!client){
+	        if (!client) {
 	            return;
 	        }
-	        this.props.addOrder(client,filename);
+	        this.props.addOrder(client, filename);
 
 	        ReactDOM.findDOMNode(this.refs.client).value = "";
 	        ReactDOM.findDOMNode(this.refs.filename).value = "";
 	    },
 
-	    render : function(){
+	    render: function () {
 	        return (
-	            React.createElement("div", {className: "row"}, 
-	                React.createElement("form", {className: "col s12", method: "post", onSubmit: this.handleSubmit}, 
-	                    React.createElement("div", {className: "row"}, 
-	                        React.createElement("div", {className: "input-field col s5"}, 
-	                            React.createElement("i", {className: "material-icons prefix"}, "account_circle"), 
-	                            React.createElement("input", {id: "client", type: "text", ref: "client", name: "client", className: "validate"}), 
-	                            React.createElement("label", {htmlFor: "client"}, "客户")
-	                        ), 
+	            React.createElement("div", {className: "container"}, 
 
-	                        React.createElement("div", {className: "input-field col s5"}, 
-	                            React.createElement("i", {className: "material-icons prefix"}, "receipt"), 
-	                            React.createElement("input", {id: "filename", type: "text", ref: "filename", name: "filename", className: "validate"}), 
-	                            React.createElement("label", {htmlFor: "filename"}, "文件名")
-	                        ), 
+	                React.createElement("form", {className: "form-order", method: "post", onSubmit: this.handleSubmit}, 
+	                    React.createElement("h2", {className: "form-order-heading"}, "提交订单"), 
+	                    React.createElement("label", {htmlFor: "client", className: "sr-only"}, "Email address"), 
+	                    React.createElement("input", {type: "text", id: "client", className: "form-control", placeholder: "客户", ref: "client"}), 
 
-	                        React.createElement("button", {id: "btnOrderSubmit", className: "btn waves-effect waves-light col s2", type: "submit"}, 
-	                            "提交", 
-	                            React.createElement("i", {className: "material-icons right"}, "send")
-	                        )
-	                    )
+	                    React.createElement("label", {htmlFor: "filename", className: "sr-only"}, "Password"), 
+	                    React.createElement("input", {type: "text", id: "filename", className: "form-control", placeholder: "文件名", ref: "filename"}), 
+
+	                    React.createElement("button", {className: "btn btn-lg btn-primary btn-block", type: "submit"}, "提交")
 	                )
+
 	            )
 	        )
 	    }
@@ -21355,22 +21347,22 @@
 	        }.bind(this));
 	        return (
 	           React.createElement("div", null, 
-	               React.createElement("div", {className: "row"}, 
-	                   React.createElement("h2", {className: "center-align"}, "订单列表"), 
+	               React.createElement("div", null, 
+	                   React.createElement("h2", null, "订单列表"), 
 	                   React.createElement("div", null, 
-	                       React.createElement("div", {className: "col s4"}, 
+	                       React.createElement("div", null, 
 	                           "起始日期:", 
-	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date", className: "validate"}), 
+	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date"}), 
 	                            "终止日期:", 
-	                           React.createElement("input", {ref: "endDate", name: "endDate", type: "date", className: "validate"})
+	                           React.createElement("input", {ref: "endDate", name: "endDate", type: "date"})
 	                       ), 
 
-	                       React.createElement("div", {className: "col s8 orderTableOps"}, 
-	                           React.createElement("button", {id: "btnSearch", className: "btn waves-effect waves-light blue accent-2", onClick: this.handleSearch}, 
+	                       React.createElement("div", null, 
+	                           React.createElement("button", {id: "btnSearch", className: "btn", onClick: this.handleSearch}, 
 	                               React.createElement("i", {className: "material-icons left"}, "search"), 
 	                               "搜索"
 	                           ), 
-	                           React.createElement("button", {id: "btnOutput", className: "btn waves-effect waves-light deep-purple lighten-2", onClick: this.handleOutput}, 
+	                           React.createElement("button", {id: "btnOutput", className: "btn", onClick: this.handleOutput}, 
 	                               React.createElement("i", {className: "material-icons left"}, "description"), 
 	                               "导出"
 	                           )
@@ -21378,7 +21370,7 @@
 	                   )
 	               ), 
 	               React.createElement("div", null, 
-	                   React.createElement("table", {id: "table_wrapper", className: "bordered highlight responsive-table"}, 
+	                   React.createElement("table", {id: "table_wrapper"}, 
 	                   React.createElement("thead", null, 
 	                       React.createElement("tr", null, 
 	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "客户"), 

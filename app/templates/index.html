@@ -3,34 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Flask React</title>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ url_for('static',filename='css/materialize.min.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- Bootstrap Material Design -->
+    <link href="{{ url_for('static',filename='css/bootstrap-material-design.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ url_for('static',filename='css/ripples.min.css') }}" rel="stylesheet" type="text/css"/>
+
+
     <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="../static/js/lib/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
-    <div class="navbar-fixed">
-        <nav class="light-blue lighten-1" role="navigation">
-            <div id="navbar" class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="side-nav fixed">
-                    <li><a href="/orders" >订单管理</a></li>
-                    <li><a href="/page2" >page2</a></li>
-                </ul>
-                <a href="/" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">印务通青春版</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="large material-icons">settings</i>
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">Action</a></li>
+                        <li><a href="javascript:void(0)">Another action</a></li>
+                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <main>
-        <div class="container" id="todo-container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/orders">订单管理</a></li>
+                <li><a href="#">财务管理</a></li>
+            </ul>
 
         </div>
-    </main>
+        <div id="todo-container" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <script src="../static/js/lib/jquery-2.1.1.min.js"></script>
-    <script src="../static/js/build/bundle.js"></script>
-    <script src="../static/js/lib/materialize.min.js"></script>
-    <script src="../static/js/lib/jquery.table2excel.min.js"></script>
-    <script src="../static/js/user/init.js"></script>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="../static/js/lib/bootstrap.min.js"></script>
+<script src="../static/js/lib/material.min.js"></script>
+<script src="../static/js/lib/ripples.min.js"></script>
+
+<script src="../static/js/lib/jquery.table2excel.min.js"></script>
+<script src="../static/js/build/bundle.js"></script>
+<script src="../static/js/user/init.js"></script>
 </body>
 </html>
