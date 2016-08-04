@@ -27,7 +27,7 @@ var OrderForm = React.createClass({
                     <label htmlFor="filename" className="sr-only">Password</label>
                     <input type="text" id="filename" className="form-control" placeholder="文件名" ref="filename"/>
 
-                    <button className="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+                    <button className="btn btn-lg btn-raised btn-info btn-block" type="submit">提交</button>
                 </form>
             </div>
         )

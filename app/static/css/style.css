@@ -6,6 +6,13 @@ body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, a {
     font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
 }
 
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
@@ -30,7 +37,7 @@ body {
 
 .navbar, .navbar.navbar-default {
     background-color: #e57373;
-    color: rgba(255,255,255,.84);
+    color: rgba(255, 255, 255, .84);
 }
 
 /*
@@ -81,7 +88,7 @@ body {
     background-color: #428bca;
 }
 
-.nav>li>a:hover {
+.nav > li > a:hover {
     text-decoration: none;
     background-color: #bbdefb;
     color: white;
@@ -131,6 +138,49 @@ body {
     margin-bottom: 10px;
 }
 
-.form-order-heading{
+.form-order-heading {
     text-align: center;
+}
+
+/*order table*/
+li {
+    list-style: none;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+#clientRef{
+    font-size: large;
+    color: #673ab7 ;
+}
+
+.order-list{
+    max-width: 850px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.searchOrderForm{
+    max-width: 850px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.orderListTitle{
+    text-align: center;
+}
+
+.searchOrderForm input{
+    margin-left: 10px;
+}
+
+.searchOrderForm button{
+    margin-left: 20px;
+    margin-top: 20px;
 }

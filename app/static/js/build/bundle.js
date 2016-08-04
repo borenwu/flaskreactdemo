@@ -21281,7 +21281,6 @@
 	    render: function () {
 	        return (
 	            React.createElement("div", {className: "container"}, 
-
 	                React.createElement("form", {className: "form-order", method: "post", onSubmit: this.handleSubmit}, 
 	                    React.createElement("h2", {className: "form-order-heading"}, "提交订单"), 
 	                    React.createElement("label", {htmlFor: "client", className: "sr-only"}, "Email address"), 
@@ -21290,9 +21289,8 @@
 	                    React.createElement("label", {htmlFor: "filename", className: "sr-only"}, "Password"), 
 	                    React.createElement("input", {type: "text", id: "filename", className: "form-control", placeholder: "文件名", ref: "filename"}), 
 
-	                    React.createElement("button", {className: "btn btn-lg btn-primary btn-block", type: "submit"}, "提交")
+	                    React.createElement("button", {className: "btn btn-lg btn-raised btn-info btn-block", type: "submit"}, "提交")
 	                )
-
 	            )
 	        )
 	    }
@@ -21310,82 +21308,70 @@
 
 	var OrderTable = React.createClass({displayName: "OrderTable",
 
-	    handleSearch : function(e){
+	    handleSearch: function (e) {
 	        console.log('search start!')
 	        e.preventDefault();
 	        var startDate = ReactDOM.findDOMNode(this.refs.startDate).value.trim();
 	        var endDate = ReactDOM.findDOMNode(this.refs.endDate).value.trim();
 	        console.log(startDate)
 	        console.log(endDate)
-	        if(!startDate || !endDate){
+	        if (!startDate || !endDate) {
 	            return;
 	        }
-	        this.props.searchOrder(startDate,endDate);
+	        this.props.searchOrder(startDate, endDate);
 
 	        //ReactDOM.findDOMNode(this.refs.startDate).value = "";
 	        //ReactDOM.findDOMNode(this.refs.endDate).value = "";
 	    },
 
-	    handleOutput : function(e){
-	        console.log('output start!')
-	        e.preventDefault();
+	    //handleOutput : function(e){
+	    //    console.log('output start!')
+	    //    e.preventDefault();
+	    //
+	    //    $("#table_wrapper").table2excel({
+	    //        name: "Excel Document Name",
+	    //        filename: "myFileName",
+	    //        fileext: ".xls",
+	    //        exclude_img: true,
+	    //        exclude_links: true,
+	    //        exclude_inputs: true
+	    //    });
+	    //},
 
-	        $("#table_wrapper").table2excel({
-	            name: "Excel Document Name",
-	            filename: "myFileName",
-	            fileext: ".xls",
-	            exclude_img: true,
-	            exclude_links: true,
-	            exclude_inputs: true
-	        });
-	    },
 
-
-	    render : function(){
-	        var orders = this.props.orders.map(function(item){
-	            return React.createElement(OrderItem, {key: item.SN, order: item, updateOrder: this.props.updateOrder, deleteOrder: this.props.deleteOrder})
+	    render: function () {
+	        var orders = this.props.orders.map(function (item) {
+	            return React.createElement(OrderItem, {key: item.SN, order: item, updateOrder: this.props.updateOrder, 
+	                              deleteOrder: this.props.deleteOrder})
 	        }.bind(this));
 	        return (
-	           React.createElement("div", null, 
-	               React.createElement("div", null, 
-	                   React.createElement("h2", null, "订单列表"), 
-	                   React.createElement("div", null, 
-	                       React.createElement("div", null, 
-	                           "起始日期:", 
-	                           React.createElement("input", {ref: "startDate", name: "startDate", type: "date"}), 
-	                            "终止日期:", 
-	                           React.createElement("input", {ref: "endDate", name: "endDate", type: "date"})
-	                       ), 
+	            React.createElement("div", {className: "container"}, 
+	                React.createElement("div", null, 
+	                    React.createElement("h2", {className: "orderListTitle"}, "订单列表"), 
+	                    React.createElement("form", {className: "form-inline searchOrderForm"}, 
+	                        React.createElement("div", {className: "form-group"}, 
+	                            React.createElement("label", {className: "sr-only", htmlFor: "startDate"}, "起始日期"), 
+	                            React.createElement("input", {type: "date", className: "form-control", id: "startDate", ref: "startDate"})
+	                        ), 
 
-	                       React.createElement("div", null, 
-	                           React.createElement("button", {id: "btnSearch", className: "btn", onClick: this.handleSearch}, 
-	                               React.createElement("i", {className: "material-icons left"}, "search"), 
-	                               "搜索"
-	                           ), 
-	                           React.createElement("button", {id: "btnOutput", className: "btn", onClick: this.handleOutput}, 
-	                               React.createElement("i", {className: "material-icons left"}, "description"), 
-	                               "导出"
-	                           )
-	                       )
-	                   )
-	               ), 
-	               React.createElement("div", null, 
-	                   React.createElement("table", {id: "table_wrapper"}, 
-	                   React.createElement("thead", null, 
-	                       React.createElement("tr", null, 
-	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "客户"), 
-	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "流水号"), 
-	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "文件名"), 
-	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "状态"), 
-	                           React.createElement("th", {className: "blue-grey-text text-darken-1"}, "操作")
-	                       )
-	                    ), 
-	                    React.createElement("tbody", null, 
-	                    orders
+	                        React.createElement("div", {className: "form-group"}, 
+	                            React.createElement("label", {className: "sr-only", htmlFor: "endDate"}, "终止日期"), 
+	                            React.createElement("input", {type: "date", className: "form-control", id: "endDate", ref: "endDate"})
+	                        ), 
+	                        React.createElement("button", {type: "submit", className: "btn btn-raised btn-info", onClick: this.handleSearch}, 
+	                            React.createElement("i", {className: "material-icons left"}, "search"), 
+	                            "搜索"
+	                        )
+	                    )
+	                ), 
+	                React.createElement("div", null, 
+	                    React.createElement("ul", {className: "order-list"}, 
+	                        React.createElement("li", null, 
+	                            orders
+	                        )
 	                    )
 	                )
-	               )
-	           )
+	            )
 	        )
 	    }
 	});
@@ -21406,27 +21392,67 @@
 	        this.props.deleteOrder(sn);
 
 	    },
+	    handleHref : function(){
+	        var o = this.props.order;
+	        return '#' + o.sn;
+	    },
 	    render : function(){
 	        var o = this.props.order;
 	        var updateBtn;
 
 	        if(o.status == 0){
-	            updateBtn =  React.createElement("button", {onClick: this.handleUpdate.bind(this,o.sn,1), className: "btn waves-effect waves-light deep-purple lighten-2"}, "完成")
+	            updateBtn =  React.createElement("button", {onClick: this.handleUpdate.bind(this,o.sn,1), className: "btn btn-raised btn-info"}, "完成")
 	        }else{
-	            updateBtn = React.createElement("button", {className: "btn disabled"}, "完成")
+	            updateBtn = React.createElement("button", {className: "btn btn-raised disabled", style: {color: '#ef9a9a'}}, "完成")
 	        }
 
 	        return (
-	           React.createElement("tr", null, 
-	               React.createElement("td", null,  o.clientname), 
-	               React.createElement("td", null,  o.sn), 
-	               React.createElement("td", null,  o.filename), 
-	               React.createElement("td", null,  o.status == 0 ? '未完成':'已完成'), 
-	               React.createElement("td", null, 
-	                   updateBtn, 
-	                   React.createElement("button", {onClick: this.handleDelete.bind(this,o.sn), className: "btn waves-effect waves-light red darken-3"}, "删除")
-	               )
-	           )
+	             React.createElement("div", {className: "panel panel-default"}, 
+	                React.createElement("div", {className: "panel-heading"}, 
+	                    React.createElement("i", {className: "material-icons"}, "place"), 
+	                    React.createElement("a", {id: "clientRef", "data-toggle": "collapse", href: this.handleHref(), "aria-expanded": "false", 
+	                       "aria-controls": "collapseExample2"}, 
+	                         o.clientname
+	                    )
+	                ), 
+	                React.createElement("div", {className: "collapse", id: o.sn}, 
+	                    React.createElement("table", {id: "tableExample", className: "table table-bordered"}, 
+	                        React.createElement("thead", null, 
+	                        React.createElement("tr", null, 
+	                            React.createElement("th", null, "流水号"), 
+	                            React.createElement("th", null, "文件名"), 
+	                            React.createElement("th", null, "状态"), 
+	                            React.createElement("th", null, "操作")
+	                        )
+	                        ), 
+	                        React.createElement("tbody", null, 
+	                        React.createElement("tr", null, 
+	                            React.createElement("td", null,  o.sn), 
+	                            React.createElement("td", null,  o.filename), 
+	                            React.createElement("td", null,  o.status == 0 ? '未完成':'已完成'), 
+	                            React.createElement("td", null, 
+	                                updateBtn, 
+	                                React.createElement("button", {className: "btn btn-raised btn-warning", onClick: this.handleDelete.bind(this,o.sn)}, "删除"), 
+	                                React.createElement("button", {className: "btn btn-raised btn-success", "data-toggle": "modal", "data-target": "#billModal"}, "任务明细"
+	                                ), 
+	                                React.createElement("button", {className: "btn btn-raised btn-success", "data-toggle": "modal", "data-target": "#recordModal"}, "领料"
+	                                )
+	                            )
+	                        )
+	                        )
+	                    )
+	                )
+	            )
+	           //<tr>
+	           //    <td>{ o.clientname }</td>
+	           //    <td>{ o.sn}</td>
+	           //    <td>{ o.filename }</td>
+	           //    <td>{ o.status == 0 ? '未完成':'已完成' }</td>
+	           //    <td>
+	           //        {updateBtn}
+	           //        <button  onClick={this.handleDelete.bind(this,o.sn)} className="btn waves-effect waves-light red darken-3">删除</button>
+	           //    </td>
+	           //</tr>
 	        )
 	    }
 	});

@@ -1,5 +1,6 @@
 from app import db
 
+
 class CRUD():
     def save(self):
         db.session.add(self)

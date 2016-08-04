@@ -8,9 +8,9 @@ class Order(db.Model, CRUD):
     __tablename__ = 'orders'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    clientname = db.Column(db.String(320))
+    clientname = db.Column(db.String(320),unique=False)
     SN = db.Column(db.String(320), unique=True)
-    filename = db.Column(db.String(320))
+    filename = db.Column(db.String(320),unique=False)
     date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
     bills = db.relationship('Bill', backref="order", cascade="all, delete-orphan", lazy='dynamic')
@@ -34,13 +34,13 @@ class Bill(db.Model, CRUD):
     __tablename__ = 'bills'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(320))
-    color = db.Column(db.String(320))
-    type = db.Column(db.String(320))
-    weight = db.Column(db.Float)
-    size = db.Column(db.String(320))
-    unit = db.Column(db.String(320))
-    amount = db.Column(db.Float)
+    name = db.Column(db.String(320),unique=False)
+    color = db.Column(db.String(320),unique=False)
+    type = db.Column(db.String(320),unique=False)
+    weight = db.Column(db.Float,unique=False)
+    size = db.Column(db.String(320),unique=False)
+    unit = db.Column(db.String(320),unique=False)
+    amount = db.Column(db.Float,unique=False)
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
 
     def __repr__(self):
@@ -64,7 +64,7 @@ class Operation(db.Model, CRUD):
     __tablename__ = 'operations'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(320))
+    name = db.Column(db.String(320),unique=False)
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
 
     def __repr__(self):
