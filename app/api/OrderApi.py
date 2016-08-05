@@ -72,6 +72,20 @@ def update():
         return jsonify(status="fail")
 
 
+@app.route('/orders/bills/list', methods=['POST', 'GET'])
+def listBill():
+    form = request.form
+    # print args.isempty()
+    try:
+        sn = form['sn']
+        order = Order.query.filter_by(SN=sn).first_or_404()
+        bills = order.bills
+        return jsonify(status="success", bills=[bill.to_json() for bill in bills])
+    except Exception, e:
+        print e
+        return jsonify(status="fail")
+
+
 @app.route('/orders/bills/add', methods=['POST', ])
 def addBill():
     form = request.form
@@ -123,6 +137,8 @@ def deleteBill():
     form = request.form
     sn = form.get('sn')
     id = form.get('id')
+    print sn
+    print id
     try:
         order = Order.query.filter_by(SN=sn).first_or_404()
         bill = order.bills.filter_by(id=id)[0]
@@ -178,4 +194,3 @@ def deleteOp():
     except Exception, e:
         print e
         return jsonify(status="fail")
-

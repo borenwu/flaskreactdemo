@@ -37,7 +37,8 @@ var OrderTable = React.createClass({
 
     render: function () {
         var orders = this.props.orders.map(function (item) {
-            return <OrderItem key={item.SN} order={item} updateOrder={this.props.updateOrder}
+            console.log(item.sn)
+            return <OrderItem key={item.sn} order={item} updateOrder={this.props.updateOrder}
                               deleteOrder={this.props.deleteOrder}/>
         }.bind(this));
         return (
@@ -62,9 +63,7 @@ var OrderTable = React.createClass({
                 </div>
                 <div>
                     <ul className="order-list">
-                        <li>
-                            {orders}
-                        </li>
+                        {orders}
                     </ul>
                 </div>
             </div>
