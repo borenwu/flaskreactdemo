@@ -37,7 +37,6 @@ var OrderTable = React.createClass({
 
     render: function () {
         var orders = this.props.orders.map(function (item) {
-            console.log(item.sn)
             return <OrderItem key={item.sn} order={item} updateOrder={this.props.updateOrder}
                               deleteOrder={this.props.deleteOrder}/>
         }.bind(this));

@@ -113,8 +113,6 @@ def updateBill():
     form = request.form
     sn = form.get('sn')
     id = form.get('id')
-    print sn
-    print id
     try:
         order = Order.query.filter_by(SN=sn).first_or_404()
         bill = order.bills.filter_by(id=id)[0]

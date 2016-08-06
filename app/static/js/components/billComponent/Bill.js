@@ -4,39 +4,6 @@ var BillItem = require('./BillItem');
 
 
 var Bill = React.createClass({
-
-    //getInitialState : function () {
-    //   return{
-    //       orders : []
-    //   }
-    //},
-
-
-    handleModalID: function () {
-        var sn = this.props.orderSN
-        return sn;
-    },
-
-    handleAddBill: function (e) {
-        e.preventDefault();
-        var sn = this.props.orderSN
-        console.log(sn)
-        var name = ReactDOM.findDOMNode(this.refs.itemName).value.trim();
-        var color = ReactDOM.findDOMNode(this.refs.itemColor).value.trim();
-        var type = ReactDOM.findDOMNode(this.refs.itemType).value.trim();
-        var weight = ReactDOM.findDOMNode(this.refs.itemWeight).value.trim();
-        var size = ReactDOM.findDOMNode(this.refs.itemSize).value.trim();
-        var unit = ReactDOM.findDOMNode(this.refs.itemUnit).value.trim();
-        var amount = ReactDOM.findDOMNode(this.refs.itemAmount).value.trim();
-
-        this.props.addBill(sn, name, color, type, weight, size, unit, amount);
-    },
-
-    handleModalClose: function(){
-        console.log('modal close')
-        $("#billModal").removeData("bs.modal");
-    },
-
     render: function () {
         var sn = this.props.orderSN
         var bills = this.props.bills.map(function (item) {
